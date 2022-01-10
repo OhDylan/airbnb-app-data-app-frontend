@@ -59,6 +59,7 @@ const SearchPage = () => {
 
     const search = () => {
         setResults([]);
+        setSearched(false);
         setIsLoading(true);
         let requestBody = {
             "query": query,
@@ -84,7 +85,10 @@ const SearchPage = () => {
             }
             setIsLoading(false);
             setResults(result);
-            setSearched(true);
+            if(result.length === 0)
+            {
+                setSearched(true);
+            }
         })
         .catch((err) => console.error(err));
     }
