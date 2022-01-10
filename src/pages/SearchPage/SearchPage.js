@@ -20,6 +20,7 @@ const SearchPage = () => {
     const [suggestions, setSuggestions] = useState([]);
     const [results, setResults] = useState([]);
     const [searched, setSearched] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if(query !== "")
@@ -36,8 +37,7 @@ const SearchPage = () => {
                 method: "POST",
                 mode: "cors",
                 headers: {
-                    "Content-type": "application/json",
-                    "Access-Control-Allow-Origin": "*"
+                    "Content-type": "application/json"
                 },
                 body: JSON.stringify(requestBody)
             })
@@ -59,6 +59,7 @@ const SearchPage = () => {
 
     const search = () => {
         setResults([]);
+        setIsLoading(true);
         let requestBody = {
             "query": query,
             "position": {
@@ -71,9 +72,7 @@ const SearchPage = () => {
             method: "POST",
             mode: "cors",
             headers: {
-                "Content-type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": ["GET", "POST"]
+                "Content-type": "application/json"
             },
             body: JSON.stringify(requestBody)
         })
@@ -83,6 +82,7 @@ const SearchPage = () => {
             {
                 result = result.slice(0, 18);
             }
+            setIsLoading(false);
             setResults(result);
             setSearched(true);
         })
@@ -106,6 +106,7 @@ const SearchPage = () => {
                     <Typography variant="subtitle2">Please right click to select the desired location on map.</Typography>
                 </Grid>
                 <Grid item xs={0} sm={2}></Grid>
+                {isLoading && <Typography variant="subtitle2">Loading results...</Typography>}
                 {results.length > 0 && results.map((result) => {
                     if(result.summary.length > 100)
                     {
