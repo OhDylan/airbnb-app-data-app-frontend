@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { BallBeat } from 'react-pure-loaders';
 import SearchBar from "../../components/SearchBar/SearchBar";
 import GoogleMapComponent from "../../components/GoogleMap/GoogleMapComponent";
 import PropertyCard from "../../components/Card/PropertyCard";
@@ -112,9 +111,7 @@ const SearchPage = () => {
                 </Grid>
                 <Grid item xs={0} sm={2}></Grid>
                 {isLoading && 
-                    <BallBeat
-                        loading={isLoading}
-                    />
+                    <Typography variant="button">Loading...</Typography>
                 }
                 {results.length > 0 && results.map((result) => {
                     if(result.summary.length > 100)
