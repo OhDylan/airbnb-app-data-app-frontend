@@ -32,7 +32,7 @@ const SearchPage = () => {
                 }
             }
     
-            fetch("https://git.heroku.com/do-airbnb.git/search", {
+            fetch("https://do-airbnb.herokuapp.com/search", {
                 method: "POST",
                 mode: "cors",
                 headers: {
@@ -67,7 +67,7 @@ const SearchPage = () => {
             }
         }
 
-        fetch("https://git.heroku.com/do-airbnb.git/search", {
+        fetch("https://do-airbnb.herokuapp.com/search", {
             method: "POST",
             mode: "cors",
             headers: {
